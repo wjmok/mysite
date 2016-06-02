@@ -7,7 +7,7 @@ use Think\Controller;
  */
 class LoginController extends Controller {
 
-    public function index(){
+    public function index(){ 
         if(session('adminUser')) {
            $this->redirect('/mysite/admin.php?c=index');
         }

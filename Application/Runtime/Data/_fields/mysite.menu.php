@@ -1,0 +1,1 @@
+a:6:{i:0;s:7:"menu_id";i:1;s:4:"name";i:2;s:9:"listorder";i:3;s:6:"status";s:3:"_pk";s:7:"menu_id";s:5:"_type";a:4:{s:7:"menu_id";s:20:"smallint(6) unsigned";s:4:"name";s:11:"varchar(40)";s:9:"listorder";s:20:"smallint(6) unsigned";s:6:"status";s:10:"tinyint(1)";}}
