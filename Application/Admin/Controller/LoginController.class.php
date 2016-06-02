@@ -54,7 +54,7 @@ class LoginController extends Controller {
         if(!$email) {
             return show(0,'邮箱不能为空');
         }
-        if(!trim($password)) {
+        if(!trim($_POST['password'])) {
             return show(0,'密码不能为空');
         }
 

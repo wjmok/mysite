@@ -43,10 +43,10 @@ var sign = {
 
         if(!username) {
             dialog.error('用户名不能为空');
-        }
+        };
         if(!password) {
             dialog.error('密码不能为空');
-        }
+        };
 
         var url = "/mysite/admin.php?m=admin&c=login&a=signup";
         var data = {

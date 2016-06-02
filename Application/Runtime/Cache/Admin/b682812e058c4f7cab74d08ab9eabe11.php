@@ -66,12 +66,19 @@
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav nav_list">
-                <li <?php echo (getActive($index)); ?>>
-                    <a href="/scms/admin.php"><i class="fa fa-fw fa-dashboard"></i> 首页</a>
+                <li>
+                    <a href="/mysite/admin.php"><i class="fa fa-fw fa-dashboard"></i> 首页</a>
                 </li>
-                <?php if(is_array($navs)): $i = 0; $__LIST__ = $navs;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$navo): $mod = ($i % 2 );++$i;?><li <?php echo (getActive($navo["c"])); ?>>
-                        <a href="<?php echo (getAdminMenuUrl($navo)); ?>"><i class="fa fa-fw fa-bar-chart-o"></i> <?php echo ($navo["name"]); ?></a>
-                    </li><?php endforeach; endif; else: echo "" ;endif; ?>
+                <li>
+                    <a href="/mysite/admin.php?c=menu"><i class="fa fa-fw fa-dashboard"></i> 菜单管理</a>
+                </li>
+                <li>
+                    <a href="/mysite/admin.php?c=content"><i class="fa fa-fw fa-dashboard"></i> 内容管理</a>
+                </li>
+                <li>
+                    <a href="/mysite/admin.php?c=basic"><i class="fa fa-fw fa-dashboard"></i>基本配置</a>
+                </li>
+                
             </ul>
         </div>
         <!-- /.navbar-collapse -->

@@ -39,45 +39,52 @@
 
     <?php
  $navs = D("Menu")->getAdminMenus(); $username = getLoginUsername(); foreach($navs as $k=>$v) { if($v['c'] == 'admin' && $username != 'admin') { unset($navs[$k]); } } $index = 'index'; ?>
-<!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="navbar-header">
-    
-    <a class="navbar-brand" >singcms内容管理平台</a>
-  </div>
-  <!-- Top Menu Items -->
-  <ul class="nav navbar-right top-nav">
-    
-    
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo getLoginUsername()?> <b class="caret"></b></a>
-      <ul class="dropdown-menu">
-        <li>
-          <a href="/mysite/admin.php?c=admin&a=personal"><i class="fa fa-fw fa-user"></i> 个人中心</a>
-        </li>
-       
-        <li class="divider"></li>
-        <li>
-          <a href="/mysite/admin.php?c=login&a=loginout"><i class="fa fa-fw fa-power-off"></i> 退出</a>
-        </li>
-      </ul>
-    </li>
-  </ul>
-  <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-  <div class="collapse navbar-collapse navbar-ex1-collapse">
-    <ul class="nav navbar-nav side-nav nav_list">
-      <li <?php echo (getActive($index)); ?>>
-        <a href="/scms/admin.php"><i class="fa fa-fw fa-dashboard"></i> 首页</a>
-      </li>
-      <?php if(is_array($navs)): $i = 0; $__LIST__ = $navs;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$navo): $mod = ($i % 2 );++$i;?><li <?php echo (getActive($navo["c"])); ?>>
-        <a href="<?php echo (getAdminMenuUrl($navo)); ?>"><i class="fa fa-fw fa-bar-chart-o"></i> <?php echo ($navo["name"]); ?></a>
-      </li><?php endforeach; endif; else: echo "" ;endif; ?>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand">singcms内容管理平台</a>
+        </div>
+        <!-- Top Menu Items -->
+        <ul class="nav navbar-right top-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo getLoginUsername()?> <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="/mysite/admin.php?c=admin&a=personal"><i class="fa fa-fw fa-user"></i> 个人中心</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="/mysite/admin.php?c=admin"><i class="fa fa-fw fa-user"></i> 用户管理</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="/mysite/admin.php?c=login&a=loginout"><i class="fa fa-fw fa-power-off"></i> 退出</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav nav_list">
+                <li>
+                    <a href="/mysite/admin.php"><i class="fa fa-fw fa-dashboard"></i> 首页</a>
+                </li>
+                <li>
+                    <a href="/mysite/admin.php?c=menu"><i class="fa fa-fw fa-dashboard"></i> 菜单管理</a>
+                </li>
+                <li>
+                    <a href="/mysite/admin.php?c=content"><i class="fa fa-fw fa-dashboard"></i> 内容管理</a>
+                </li>
+                <li>
+                    <a href="/mysite/admin.php?c=basic"><i class="fa fa-fw fa-dashboard"></i>基本配置</a>
+                </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
 
-    </ul>
-  </div>
-  <!-- /.navbar-collapse -->
-</nav>
 <div id="page-wrapper">
 
 	<div class="container-fluid">
