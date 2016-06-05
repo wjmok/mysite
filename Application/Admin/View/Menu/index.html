@@ -13,7 +13,7 @@
                                 <i class="fa fa-dashboard"></i> <a href="/scms/admin.php?c=menu">菜单管理</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-table"></i>{$nav}
+                                <i class="fa fa-table"></i>
                             </li>
                         </ol>
                     </div>
@@ -43,15 +43,16 @@
                                                 <td>{$menu.menu_id}</td>
                                                 <td>{$menu.name}</td>
                                                 <td>{$menu.status|status}</td>
-                                                <td><span  class="fa fa-pencil" aria-hidden="true" id="singcms-edit" attr-id="{$menu.menu_id}">
-                                                    
-                                                </span>
-                                                    <a href="javascript:void(0)" attr-id="{$menu.menu_id}" id="singcms-delete" attr-a="menu" attr-message="删除">
-                                                        <i class="fa fa-close"></i>
+                                                <td>
+                                                     <span style="margin-left:2px;">
+                                                     <a href="javascript:void(0)"><span class="fa fa-pencil fa-2x" aria-hidden="true" id="menu-edit" attr-id="{$menu.menu_id}"></span></a>
+                                                    </span>
+                                                   
+                                                     <span style="position:absolute; margin-left:17px;">
+                                                     <a href="javascript:void(0)" attr-id="{$menu.menu_id}" id="singcms-delete" attr-a="menu" attr-message="删除" >
+                                                        <i class="fa fa-close fa-2x" ></i>
                                                     </a>
-                                                </td>
-                                                <td style="border: 1px solid white">
-                                                    <button id="button-edit" type="button" class="btn btn-primary " aria-haspopup="true" aria-expanded="false">编辑 </button>
+                                                    </span>
                                                 </td>
                                             </tr>
                                         </volist>

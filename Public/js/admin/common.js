@@ -5,9 +5,10 @@ $("#button-add").click(function(){
     var url = SCOPE.add_url;
     window.location.href=url;
 });
-
-$("#button-edit").click(function(){
-    var url = SCOPE.edit_url;
+/*编辑模型*/
+$("#menu-edit").click(function(){
+    var id = $(this).attr('attr-id');
+    var url = SCOPE.edit_url + '&id=' +id;
     window.location.href=url;
 });
 
@@ -37,11 +38,7 @@ $("#singcms-button-submit").click(function(){
 /*
 编辑模型
  */
-$('.singcms-table #singcms-edit').on('click',function(){
-    var id = $(this).attr('attr-id');
-    var url = SCOPE.edit_url + '&id='+id;
-    window.location.href=url;
-});
+
 
 
 /**
