@@ -78,9 +78,27 @@ class LoginController extends Controller {
         $this->display();
     }
 
-
-
     }
+
+    /*设置即时判定用户名时候存在*/
+    public function checkusername(){
+       
+        $username = $_POST['username'];
+
+        if(!trim($username)) {
+            return dialog.error('用户名不能为空');
+        }
+
+        $ret = D('Admin')->getAdminByUsername($username);
+        if($ret) {
+            return show(0,'用户名已存在');
+        } else { 
+            return show(1,'用户名可使用');
+        }
+    }
+    
+        
+
 
     public function loginout() {
         session('adminUser', null);

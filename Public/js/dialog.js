@@ -3,7 +3,7 @@ var dialog = {
     error: function(message) {
         layer.open({
             content:message,
-            icon:2,
+            icon : 2,
             title : '错误提示',
         });
     },
@@ -16,6 +16,15 @@ var dialog = {
             yes : function(){
                 location.href=url;
             },
+        });
+    },
+
+    //注册成功提示框
+    registsuccess : function(message) {
+        layer.open({
+            content : message,
+            icon : 1,
+            title : '恭喜',
         });
     },
 
