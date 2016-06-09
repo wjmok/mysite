@@ -130,6 +130,11 @@ class MenuController extends CommonController {
             return dialog.error('菜单名不能为空');
         }
 
+        $datamenu = D("Menu")->checkMenuByIdandName($menuId,$menuname);
+        if ($datamenu) {
+            return show(1,'更新成功'); 
+        }
+
         $ret = D('Menu')->getMenuByName($menuname);
         if($ret) {
             return show(0,'该菜单已存在');

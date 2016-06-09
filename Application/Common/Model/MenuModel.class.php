@@ -96,10 +96,16 @@ class MenuModel extends  Model {
         return $res;
     }
 
-        /*通过ID修改菜单名*/
+    /*通过ID修改菜单名*/
     public function updateMenuNameById($id, $menuname) {
         $data['name'] = $menuname;
         $res = $this->_db->where('menu_id="'.$id.'"')->save($data);
         return $res;
+    }
+
+    /*判定菜单是否更改-待优化*/
+    public function checkMenuByIdandName($id, $menuname){
+        $datamenu = $this->_db->where('menu_id="'.$id.'" and name="'.$menuname.'"')->find();
+        return $datamenu;
     }
 }
