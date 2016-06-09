@@ -45,9 +45,7 @@ class ContentController extends CommonController {
             if(!isset($_POST['small_title']) || !$_POST['small_title']) {
                 return show(0,'短标题不存在');
             }
-            if(!isset($_POST['menu_id']) || !$_POST['menu_id']) {
-                return show(0,'文章栏目不存在');
-            }
+
             if(!isset($_POST['keywords']) || !$_POST['keywords']) {
                 return show(0,'关键字不存在');
             }
@@ -59,16 +57,9 @@ class ContentController extends CommonController {
             }
             $newsId = D("Content")->insert($_POST);
             if($newsId) {
-                $newsContentData['content'] = $_POST['content'];
-                $newsContentData['news_id'] = $newsId;
-                $cId = D("NewsContent")->insert($newsContentData);
-                if($cId){
+                
                     return show(1,'新增成功');
-                }else{
-                    return show(1,'主表插入成功，副表插入失败');
-                }
-
-
+               
             }else{
                 return show(0,'新增失败');
             }
@@ -76,7 +67,6 @@ class ContentController extends CommonController {
         }else {
 
             $webSiteMenu = D("Menu")->getBarMenus();
-
             $titleFontColor = C("TITLE_FONT_COLOR");
             $copyFrom = C("COPY_FROM");
             $this->assign('webSiteMenu', $webSiteMenu);

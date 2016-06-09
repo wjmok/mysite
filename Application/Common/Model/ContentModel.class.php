@@ -11,7 +11,7 @@ class ContentModel extends Model {
 
     public function __construct() {
         $this->_db = M('content');
-    }
+    } 
     public function select($data = array(), $limit = 100) {
 
         $conditions = $data;
