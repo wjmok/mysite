@@ -89,4 +89,17 @@ class MenuModel extends  Model {
             ->select();
         return $res;
     }
+
+    /*通过菜单名从数据库中搜索同名的数据*/
+    public function getMenuByName($menuname='') {
+        $res = $this->_db->where('name="'.$menuname.'"')->find();
+        return $res;
+    }
+
+        /*通过ID修改菜单名*/
+    public function updateMenuNameById($id, $menuname) {
+        $data['name'] = $menuname;
+        $res = $this->_db->where('menu_id="'.$id.'"')->save($data);
+        return $res;
+    }
 }

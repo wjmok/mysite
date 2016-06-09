@@ -121,7 +121,23 @@ class MenuController extends CommonController {
         return show(0,'排序数据失败',array('jump_url'=>$jumpUrl));
     }
 
+    public function checkmenuname(){
 
+        $menuname = $_POST['menuname'];
+        $menuId = $_POST['id'];
+
+        if(!trim($menuname)) {
+            return dialog.error('菜单名不能为空');
+        }
+
+        $ret = D('Menu')->getMenuByName($menuname);
+        if($ret) {
+            return show(0,'该菜单已存在');
+        } else { 
+            D("Menu")->updateMenuNameById($menuId,$menuname); 
+            return show(1,'更新成功');      
+        }
+    }
 
 
 }
