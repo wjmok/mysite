@@ -39,10 +39,9 @@ class ContentController extends CommonController
         $this->assign('webSiteMenu', D("Menu")->getBarMenus());
         $this->display();
     }
-    
 
-
-    public function add(){
+    public function add()
+    {
 
         if ($_POST) {
             if (!isset($_POST['title']) || !$_POST['title']) {
@@ -84,27 +83,30 @@ class ContentController extends CommonController
 
     public function edit()
     {
-        $newsId = $_GET['id'];
-        if (!$newsId) {
-            // 执行跳转
-            $this->redirect('/mysite/admin.php?c=content');
-        }
-        $news = D("News")->find($newsId);
-        if (!$news) {
-            $this->redirect('/mysite/admin.php?c=content');
-        }
-        $newsContent = D("Content")->find($newsId);
-        if ($newsContent) {
-            $news['content'] = $newsContent['content'];
-        }
 
-        $webSiteMenu = D("Menu")->getBarMenus();
-        $this->assign('webSiteMenu', $webSiteMenu);
-        $this->assign('titleFontColor', C("TITLE_FONT_COLOR"));
-        $this->assign('copyfrom', C("COPY_FROM"));
+        if ($_POST) {
+            $newsId = $_GET['id'];
+            if (!$newsId) {
+                // 执行跳转
+                $this->redirect('/mysite/admin.php?c=content');
+            }
+            $news = D("News")->find($newsId);
+            if (!$news) {
+                $this->redirect('/mysite/admin.php?c=content');
+            }
+            $newsContent = D("Content")->find($newsId);
+            if ($newsContent) {
+                $news['content'] = $newsContent['content'];
+            }
+        } else {
+            $webSiteMenu = D("Menu")->getBarMenus();
+            $this->assign('webSiteMenu', $webSiteMenu);
+            $this->assign('titleFontColor', C("TITLE_FONT_COLOR"));
+            $this->assign('copyfrom', C("COPY_FROM"));
 
-        $this->assign('news', $news);
-        $this->display();
+            $this->assign('news', $news);
+            $this->display();
+        }
     }
 
     public function save($data)
@@ -134,7 +136,7 @@ class ContentController extends CommonController
                 if (!$id) {
                     return show(0, 'ID不存在');
                 }
-                $res = D("News")->updateStatusById($id, $status);
+                $res = D("Content")->updateStatusById($id, $status);
                 if ($res) {
                     return show(1, '操作成功');
                 } else {
@@ -174,15 +176,13 @@ class ContentController extends CommonController
 
     public function deletpic()
     {
-        $picurl =  'D:/xampp/htdocs'.$_POST['src'];
+        $picurl = 'D:/xampp/htdocs' . $_POST['src'];
 
         if (file_exists($picurl)) {
-           
-            if (!unlink($picurl)){
+
+            if (!unlink($picurl)) {
                 return show(0, '操作失败');
-            }
-                
-             else {
+            } else {
                 return show(1, '操作成功');
             }
         } else {
