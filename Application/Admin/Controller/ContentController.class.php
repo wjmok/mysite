@@ -42,6 +42,10 @@ class ContentController extends CommonController
     public function add()
     {
 
+<<<<<<< HEAD
+=======
+    public function add(){
+>>>>>>> c25a4b547f88ca0117f70dd4b1a4371d792f455d
         if ($_POST) {
             if (!isset($_POST['title']) || !$_POST['title']) {
                 return show(0, '标题不存在');
