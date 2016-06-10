@@ -33,4 +33,7 @@ class ImageController extends CommonController {
         return showKind(0,$res);
     }
 
+
+
+
 }

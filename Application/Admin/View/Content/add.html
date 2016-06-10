@@ -43,7 +43,7 @@
                                         <ul id="previewImgs"></ul>
                                     </div>
                                     <br/><a href="javascript:$('#file_upload').uploadify('upload','*')"><i class="fa fa-cloud-upload fa-2x" ></i></a>
-                                    <a href="javascript:$('#file_upload').uploadify('cancel', '*')"><i class="fa fa-times-circle fa-2x" ></i></a>
+                                    <a  id="deletpic" href="javascript:$('#file_upload').uploadify('cancel', '*')"><i class="fa fa-times-circle fa-2x" ></i></a>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -94,6 +94,7 @@
         'jump_url': '/mysite/admin.php?c=content',
         'ajax_upload_image_url': '/mysite/admin.php?c=image&a=ajaxuploadimage',
         'ajax_upload_swf': '/mysite/Public/js/party/uploadify.swf',
+        'delet':'/mysite/admin.php?c=content&a=deletpic',
     };
     </script>
     <!-- /#wrapper -->

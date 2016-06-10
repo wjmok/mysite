@@ -14,7 +14,7 @@ $(function() {
         'fileTypeExts': '*.gif; *.jpg; *.png',
         'removeCompleted': false,
         'multi': false,
-        'buttonText' : '选择文件...',
+        'buttonText': '选择文件...',
 
 
 
@@ -22,14 +22,14 @@ $(function() {
             // response true ,false
             if (response) {
                 var obj = JSON.parse(data); //由JSON字符串转换为JSON对象
+                window.purl = '/mysite' + obj.data;
 
-                console.log(obj);
                 $('#' + file.id).find('.data').html(' 上传完毕');
 
-                var imgstr = '<li style="list-style-type:none;"><img   src=" /mysite' + obj.data + '" alt="预览图片" width="80" height="70"></li>'+'<li style="list-style-type:none;"><input type="text" name="uploadfileurl" id="saveurl" size="50" style="border:none;" /></li>';
-              
+                var imgstr = '<li style="list-style-type:none;"><img   src=" /mysite' + obj.data + '" alt="预览图片" width="80" height="70"></li>' + '<li style="list-style-type:none;"><input type="text" name="uploadfileurl" id="saveurl" size="50" style="border:none;" /></li>';
+
                 $("#previewImgs").append(imgstr);
-                
+
                 $("#previewImgs #saveurl").val(obj.data);
             } else {
                 alert('上传失败')
@@ -37,9 +37,16 @@ $(function() {
         },
 
 
-        'onClearQueue' : function(queueItemCount) {
+        'onClearQueue': function(queueItemCount) {
+
+
+
+
+
+
+
             $("#previewImgs").children().remove();
-        } 
+        }
 
 
     })
@@ -54,12 +61,24 @@ $(function() {
 
 
 
-    function goDel(objdom, src) {
-        //先执行ajax删除图片，删除成功之后 删除预览图片
-        //alert(src);
-        $(objdom).parent().remove();
-        //删除预览图片之后还要 修改 id="saveurl" 隐藏域的值，这个是写入到数据库的图片路径（我这里只是写一个测试就没有完善见谅了）
+    $("#deletpic").click(function() {
+        postData = {};
+        postData['src'] = purl;
+        var url = SCOPE.delet;
+        console.log(postData);
 
-        return false;
-    }
+        $.post(url, postData, function(result) {
+            console.log(result);
+            if (result.status = 1) {
+                // TODO
+
+                return dialog.onlysuccess(result.message);
+            }
+            if (result.status == 0) {
+                // TODO
+                return dialog.error(result.message);
+            }
+            
+        }, "json");
+    })
 })

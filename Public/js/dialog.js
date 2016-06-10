@@ -48,4 +48,12 @@ var dialog = {
             btn : ['确定'],
         });
     },
+
+    onlysuccess : function(message) {
+        layer.open({
+            content : message,
+            icon : 1,
+            
+        });
+    },
 }
