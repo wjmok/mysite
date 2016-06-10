@@ -41,7 +41,7 @@ class ContentController extends CommonController
     }
 
     public function add(){
-/*        if ($_POST) {
+        if ($_POST) {
             if (!isset($_POST['title']) || !$_POST['title']) {
                 return show(0, '标题不存在');
             }
@@ -74,9 +74,9 @@ class ContentController extends CommonController
             $copyFrom = C("COPY_FROM");
             $this->assign('webSiteMenu', $webSiteMenu);
             $this->assign('titleFontColor', $titleFontColor);
-            $this->assign('copyfrom', $copyFrom);*/
+            $this->assign('copyfrom', $copyFrom);
             $this->display();
-        // }
+        }
     }
 
     public function edit()
