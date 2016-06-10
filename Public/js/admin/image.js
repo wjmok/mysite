@@ -23,7 +23,7 @@ $(function() {
             if (response) {
                 var obj = JSON.parse(data); //由JSON字符串转换为JSON对象
 
-                console.log(data);
+                console.log(obj);
                 $('#' + file.id).find('.data').html(' 上传完毕');
 
                 var imgstr = '<li style="list-style-type:none;"><img   src=" /mysite' + obj.data + '" alt="预览图片" width="80" height="70"></li>'+'<li style="list-style-type:none;"><input type="text" name="uploadfileurl" id="saveurl" size="50" style="border:none;" /></li>';
