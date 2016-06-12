@@ -16,8 +16,6 @@ $(function() {
         'multi': false,
         'buttonText': '选择文件...',
 
-
-
         'onUploadSuccess': function(file, data, response) {
             // response true ,false
             if (response) {
@@ -39,15 +37,8 @@ $(function() {
 
         'onClearQueue': function(queueItemCount) {
 
-
-
-
-
-
-
             $("#previewImgs").children().remove();
         }
-
 
     })
 
