@@ -55,7 +55,7 @@ class ContentController extends CommonController
                 return show(0, '关键字不存在');
             }
             if (!isset($_POST['content']) || !$_POST['content']) {
-                return show(0, 'content不存在');
+                return show(0, 'neirong不存在');
             }
             if ($_POST['news_id']) {
                 return $this->save($_POST);
@@ -71,12 +71,8 @@ class ContentController extends CommonController
 
         } else {
 
-            $webSiteMenu    = D("Menu")->getBarMenus();
-            $titleFontColor = C("TITLE_FONT_COLOR");
-            $copyFrom       = C("COPY_FROM");
+            $webSiteMenu = D("Menu")->getBarMenus();
             $this->assign('webSiteMenu', $webSiteMenu);
-            $this->assign('titleFontColor', $titleFontColor);
-            $this->assign('copyfrom', $copyFrom);
             $this->display();
         }
     }
@@ -101,10 +97,9 @@ class ContentController extends CommonController
         } else {
             $webSiteMenu = D("Menu")->getBarMenus();
             $this->assign('webSiteMenu', $webSiteMenu);
-            $this->assign('titleFontColor', C("TITLE_FONT_COLOR"));
-            $this->assign('copyfrom', C("COPY_FROM"));
-
-            $this->assign('news', $news);
+            $contentId = $_GET['id'];
+            $content = D("Content")->find($contentId);
+            $this->assign('news', $content);
             $this->display();
         }
     }
@@ -113,12 +108,10 @@ class ContentController extends CommonController
     {
         $newsId = $data['news_id'];
         unset($data['news_id']);
-
+ 
         try {
             $id                         = D("Content")->updateById($newsId, $data);
-            $newsContentData['content'] = $data['content'];
-            $condId                     = D("Content")->updateNewsById($newsId, $newsContentData);
-            if ($id === false || $condId === false) {
+            if ($id === false) {
                 return show(0, '更新失败');
             }
             return show(1, '更新成功');

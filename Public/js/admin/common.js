@@ -6,7 +6,7 @@ $("#button-add").click(function() {
     window.location.href = url;
 });
 /*content编辑按钮操作*/
-$(".singcms-table #singcms-edit").click(function() {
+$(".singcms-table #content-edit").click(function() {
     var id = $(this).attr('attr-id');
     var url = SCOPE.edit_url + '&id=' + id;
     window.location.href = url;
@@ -18,9 +18,9 @@ $(".singcms-table #menu-edit").click(function() {
     window.location.href = url;
 });
 /**
- * 提交form表单操作
+ * 提交menu菜单编辑操作
  */
-$("#singcms-button-submit").click(function() {
+$("#singcms-button-submit-menu").click(function() {
     var menuname = $("#inputname").val();
     var id = $("#hidden_input").val();
     if (!menuname) {
@@ -44,6 +44,10 @@ $("#singcms-button-submit").click(function() {
     }, 'JSON');
 });
 
+/*提交content编辑操作*/
+/*$("#singcms-button-submit-content").click(function(){
+
+});*/
 
 $("#bac-submit").click(function() {
     var data = $("#singcms-form").serializeArray();
