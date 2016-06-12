@@ -17,7 +17,7 @@ class BasicController extends CommonController {
 
 	public function add() {
 		if($_POST) {
-/*			if(!$_POST['title']) {
+			if(!$_POST['title']) {
 				return show(0, '站点信息不能为空');
 			}
 			if(!$_POST['keywords']) {
@@ -25,7 +25,7 @@ class BasicController extends CommonController {
 			}
 			if(!$_POST['description']) {
 				return show(0, '站点描述');
-			}*/
+			}
 
 			D("Basic")->save($_POST);
 			return show(1, '配置成功');
