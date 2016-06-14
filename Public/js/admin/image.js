@@ -20,7 +20,8 @@ $(function() {
             // response true ,false
             if (response) {
                 var obj = JSON.parse(data); //由JSON字符串转换为JSON对象
-                window.purl = '/mysite' + obj.data;
+                
+                window.purl = obj.data;
 
                 $('#' + file.id).find('.data').html(' 上传完毕');
 
@@ -54,7 +55,7 @@ $(function() {
 
     $("#deletpic").click(function() {
         postData = {};
-        postData['src'] = purl;
+        postData['src'] = '.'+ purl;
         var url = SCOPE.delet;
         console.log(postData);
 
@@ -73,3 +74,25 @@ $(function() {
         }, "json");
     })
 })
+
+    $("#uploadpic").click(function(){
+        postData = {};
+        var picurl= document.getElementById("uploadedpic").getAttribute('attr-value');
+        postData['src']='.'+ picurl;
+        var url = SCOPE.delet;
+        console.log(postData);
+
+        if (picurl) {
+            $.post(url, postData, function(result) {
+            console.log(result);
+            if (result.status = 1) {
+                $("#imgbox").children().remove();
+            }
+            if (result.status == 0) {
+                return null;
+            }
+            
+        }, "json");
+        }
+       
+    })

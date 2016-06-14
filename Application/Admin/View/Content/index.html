@@ -88,7 +88,7 @@
                                                 <td><span attr-status="<if condition=" $new[ 'status'] eq 1 ">0<else/>1</if>" attr-id="{$new.news_id}" class="sing_cursor singcms-on-off" id="singcms-on-off">{$new.status|status}</span></td>
                                                 <td>
                                                     <span><a href="javascript:void(0)" aria-hidden="true" class="fa fa-pencil fa-2x" attr-id="{$new.news_id}" id="content-edit"></a></span>
-                                                    <span><a href="javascript:void(0)" id="singcms-delete" attr-id="{$new.news_id}" attr-message="删除" class="fa fa-close fa-2x"></a></span>
+                                                    <span><a href="javascript:void(0)" id="singcms-delete" attr-id="{$new.news_id}" attr-url="{$new.thumb}" attr-message="删除" class="fa fa-close fa-2x"></a></span>
                                                 </td>
                                             </tr>
                                         </volist>
@@ -130,6 +130,7 @@
         'sing_news_view_url': '/mysite/index.php?c=view',
         'listorder_url': '/mysite/admin.php?c=content&a=listorder',
         'push_url': '/mysite/admin.php?c=content&a=push',
+        'delet':'/mysite/admin.php?c=content&a=deletpic',
     }
     </script>
     <include file="Index/footer" />

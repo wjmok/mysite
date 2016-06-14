@@ -55,7 +55,7 @@ class ContentController extends CommonController
                 return show(0, '关键字不存在');
             }
             if (!isset($_POST['content']) || !$_POST['content']) {
-                return show(0, 'neirong不存在');
+                return show(0, '内容不存在');
             }
             if ($_POST['news_id']) {
                 return $this->save($_POST);
@@ -80,37 +80,23 @@ class ContentController extends CommonController
     public function edit()
     {
 
-        if ($_POST) {
-            $newsId = $_GET['id'];
-            if (!$newsId) {
-                // 执行跳转
-                $this->redirect('/mysite/admin.php?c=content');
-            }
-            $news = D("News")->find($newsId);
-            if (!$news) {
-                $this->redirect('/mysite/admin.php?c=content');
-            }
-            $newsContent = D("Content")->find($newsId);
-            if ($newsContent) {
-                $news['content'] = $newsContent['content'];
-            }
-        } else {
-            $webSiteMenu = D("Menu")->getBarMenus();
-            $this->assign('webSiteMenu', $webSiteMenu);
-            $contentId = $_GET['id'];
-            $content = D("Content")->find($contentId);
-            $this->assign('news', $content);
-            $this->display();
-        }
+        $webSiteMenu = D("Menu")->getBarMenus();
+        $this->assign('webSiteMenu', $webSiteMenu);
+        $contentId = $_GET['id'];
+        $content = D("Content")->find($contentId);
+        $GLOBALS['abc'] =$content['thumb'];
+        $this->assign('news', $content);
+        $this->display();
     }
+
 
     public function save($data)
     {
         $newsId = $data['news_id'];
         unset($data['news_id']);
- 
+
         try {
-            $id                         = D("Content")->updateById($newsId, $data);
+            $id = D("Content")->updateById($newsId, $data);
             if ($id === false) {
                 return show(0, '更新失败');
             }
@@ -169,7 +155,7 @@ class ContentController extends CommonController
 
     public function deletpic()
     {
-        $picurl = 'D:/xampp/htdocs' . $_POST['src'];
+        $picurl = $_POST['src'];
 
         if (file_exists($picurl)) {
 

@@ -52,21 +52,21 @@ $("#singcms-button-submit-menu").click(function() {
 $("#bac-submit").click(function() {
     var data = $("#singcms-form").serializeArray();
     postData = {};
-    $(data).each(function(i){
+    $(data).each(function(i) {
         postData[this.name] = this.value;
 
     });
     url = SCOPE.save_url;
     jump_url = SCOPE.jump_url;
-    $.post(url,postData,function(result){
-        if(result.status == 1) {
+    $.post(url, postData, function(result) {
+        if (result.status == 1) {
             //成功
-            return dialog.success(result.message,jump_url);
-        }else if(result.status == 0) {
+            return dialog.success(result.message, jump_url);
+        } else if (result.status == 0) {
             // 失败
             return dialog.error(result.message);
         }
-    },"JSON");
+    }, "JSON");
 });
 /*
 编辑模型
@@ -78,7 +78,13 @@ $('.singcms-table #singcms-delete').on('click', function() {
     var id = $(this).attr('attr-id');
     var a = $(this).attr("attr-a");
     var message = $(this).attr("attr-message");
+    var picurl = $(this).attr('attr-url');
     var url = SCOPE.set_status_url;
+    postData = {};
+    postData['src'] = '.' + picurl;
+    var delurl = SCOPE.delet;
+    console.log(postData);
+
     data = {};
     data['id'] = id;
     data['status'] = -1;
@@ -92,6 +98,17 @@ $('.singcms-table #singcms-delete').on('click', function() {
         scrollbar: true,
         yes: function() {
             // 执行相关跳转
+            if (picurl) {
+                $.post(delurl, postData, function(result) {
+                    if (result.status = 1) {
+                        return null;
+                    }
+                    if (result.status == 0) {
+                        return null;
+                    }
+
+                }, "json");
+            }
             todelete(url, data);
         },
     });

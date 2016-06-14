@@ -42,10 +42,10 @@
                                     <div class="preview">
                                         <ul id="previewImgs"></ul>
                                     </div>
-                                    <div>
-                                      <img style="height: 40%;width: 40%;" src= .{$news.thumb}>
+                                    <div id="imgbox">
+                                       <img id="uploadedpic" attr-value={$news.thumb} style="height: 40%;width: 40%;" src= .{$news.thumb}>
                                     </div>
-                                    <br/><a href="javascript:$('#file_upload').uploadify('upload','*')"><i class="fa fa-cloud-upload fa-2x" ></i></a>
+                                    <br/><a id=uploadpic href="javascript:$('#file_upload').uploadify('upload','*')"><i class="fa fa-cloud-upload fa-2x" ></i></a>
                                     <a  id="deletpic" href="javascript:$('#file_upload').uploadify('cancel', '*')"><i class="fa fa-times-circle fa-2x" ></i></a>
                                 </div>
                             </div>
@@ -113,6 +113,14 @@
             }, //
         });
     });
+
+    window.onload=function(){
+        var aaa = $("#imgbox img").attr("src");
+        console.log(aaa);
+        if ($("#imgbox img").attr("src") == '.') {
+            $("#imgbox").children().remove();
+        }
+    }
     </script>
 
     <include file="Index/footer" />
