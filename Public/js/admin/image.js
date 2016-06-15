@@ -1,3 +1,39 @@
+/*图片删除按钮*/
+
+$(function(){
+     $("#deletpic").click(function() {
+
+        var test =$("#uploadedpic").is(":visible");
+        console.log(test);
+        
+        if (!test) {
+        postData = {};
+        postData['src'] = '.' + purl;
+        var url = SCOPE.delet;
+        console.log(postData);
+
+        $.post(url, postData, function(result) {
+            console.log(result);
+            if (result.status = 1) {
+                // TODO
+
+                return dialog.onlysuccess(result.message);
+            }
+            if (result.status == 0) {
+                // TODO
+                return dialog.error(result.message);
+            }
+
+        }, "json");
+
+        $("#imgbox").children().show();
+    }else{
+       $("#imgbox").children().hide(); 
+    }
+    })
+})
+
+
 /**
  * 图片上传功能
  */
@@ -19,13 +55,15 @@ $(function() {
         'onUploadSuccess': function(file, data, response) {
             // response true ,false
             if (response) {
+                $("#imgbox").children().hide();
+
                 var obj = JSON.parse(data); //由JSON字符串转换为JSON对象
-                
+
                 window.purl = obj.data;
 
                 $('#' + file.id).find('.data').html(' 上传完毕');
 
-                var imgstr = '<li style="list-style-type:none;"><img src=" /mysite' + obj.data + '" alt="预览图片" width="80" height="70"></li>' + '<li style="list-style-type:none;"><input type="text" name="thumb" id="saveurl" size="50" style="border:none;" /></li>';
+                var imgstr = '<li style="list-style-type:none;"><img src=" /mysite' + obj.data + '" alt="预览图片" width="80" height="70"></li>' + '<li style="list-style-type:none;"><input type="text" name="thumb" id="saveurl" size="50" style="border:none;" readOnly="true"/></li>';
 
                 $("#previewImgs").append(imgstr);
 
@@ -42,57 +80,4 @@ $(function() {
         }
 
     })
-
-
-
-
-
-
-
-
-
-
-
-    $("#deletpic").click(function() {
-        postData = {};
-        postData['src'] = '.'+ purl;
-        var url = SCOPE.delet;
-        console.log(postData);
-
-        $.post(url, postData, function(result) {
-            console.log(result);
-            if (result.status = 1) {
-                // TODO
-
-                return dialog.onlysuccess(result.message);
-            }
-            if (result.status == 0) {
-                // TODO
-                return dialog.error(result.message);
-            }
-            
-        }, "json");
-    })
 })
-
-    $("#uploadpic").click(function(){
-        postData = {};
-        var picurl= document.getElementById("uploadedpic").getAttribute('attr-value');
-        postData['src']='.'+ picurl;
-        var url = SCOPE.delet;
-        console.log(postData);
-
-        if (picurl) {
-            $.post(url, postData, function(result) {
-            console.log(result);
-            if (result.status = 1) {
-                $("#imgbox").children().remove();
-            }
-            if (result.status == 0) {
-                return null;
-            }
-            
-        }, "json");
-        }
-       
-    })

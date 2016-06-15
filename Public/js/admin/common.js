@@ -198,7 +198,9 @@ $("#singcms-push").click(function() {
         }
     }, "json");
 });
+/*提交功能*/
 $("#button-submit").click(function() {
+
     var data = $("#singcms-form").serializeArray();
     postData = {};
     $(data).each(function(i) {
@@ -208,6 +210,35 @@ $("#button-submit").click(function() {
     // 将获取到的数据post给服务器
     url = SCOPE.save_url;
     jump_url = SCOPE.jump_url;
+    
+    var picurl = $("#imgbox").attr('attr-value');
+    urlData = {};
+    urlData['src'] = '.' + picurl;
+    var delurl = SCOPE.delet;
+    console.log(picurl);
+
+    /*删除服务器上的旧图片*/
+    var test = $("#uploadedpic").is(":visible");
+    console.log(test);
+    if (!test) {
+          $.post(delurl, urlData, function(result) {
+            if (result.status = 1) {
+                return null;
+            }
+            if (result.status == 0) {
+                return null;
+            }
+
+        }, "json"); 
+    }else{
+        postData['thumb'] = picurl;
+    }
+
+    /*删除数据库中的旧图片*/
+    if (!postData['thumb']) {        
+        postData['thumb']=null;        
+    }
+
     $.post(url, postData, function(result) {
         if (result.status == 1) {
             //成功
